@@ -1,0 +1,5 @@
+name: InventoryMenu-API
+author: Kyle Posluns
+version: 1.0
+main: com.kyleposluns.menu.InventoryMenuPlugin
+description: Inventory Menu API and Plugin
