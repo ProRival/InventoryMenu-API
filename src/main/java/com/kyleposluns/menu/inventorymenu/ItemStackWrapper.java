@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 /**
- *
+ * (Thanks to this guy: )
  * @author Jonas
  */
 public class ItemStackWrapper {
