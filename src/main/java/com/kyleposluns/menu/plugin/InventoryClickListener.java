@@ -2,6 +2,7 @@ package com.kyleposluns.menu.plugin;
 
 import com.kyleposluns.menu.inventorymenu.InventoryMenu;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
@@ -12,6 +13,7 @@ import org.bukkit.inventory.Inventory;
  */
 public class InventoryClickListener implements Listener {
 
+    @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
         Inventory inventory = event.getInventory();
         if (inventory.getHolder() instanceof InventoryMenu) {
@@ -32,6 +34,18 @@ public class InventoryClickListener implements Listener {
             event.setCancelled(true);
         }
     }
+
+    @EventHandler
+    public void onInventoryAction(InventoryClickEvent event) {
+        if (event.getWhoClicked() instanceof Player) {
+            Player p = (Player) event.getWhoClicked();
+            if (event.getCurrentItem() != null && InventoryMenuTemplateRepository.isMenuItem(event.getCurrentItem(), p)) {
+                event.setCancelled(true);
+            }
+        }
+
+    }
+
 
     private void exitMenuIfClickOutSide(InventoryMenu menu, Player player) {
         if (menu.exitOnClickOutside()) {
