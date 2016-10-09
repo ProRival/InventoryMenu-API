@@ -5,9 +5,11 @@ import java.util.List;
 
 import com.kyleposluns.menu.function.Dynamic;
 import org.bukkit.Material;
+import org.bukkit.block.Skull;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 
 /**
  * (Thanks to this guy: )
