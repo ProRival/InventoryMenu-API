@@ -1,6 +1,7 @@
 package com.kyleposluns.menu.plugin;
 
 import com.kyleposluns.menu.inventorymenu.InventoryMenu;
+import com.kyleposluns.menu.inventorymenu.MenuRepository;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -26,6 +27,7 @@ public class InventoryClickListener implements Listener {
                     int index = event.getRawSlot();
                     if (index < inventory.getSize()) {
                         menu.selectItem(index);
+                        exitMenuOnClick(menu, player);
                     } else {
                         exitMenuIfClickOutSide(menu, player);
                     }
@@ -39,11 +41,18 @@ public class InventoryClickListener implements Listener {
     public void onInventoryAction(InventoryClickEvent event) {
         if (event.getWhoClicked() instanceof Player) {
             Player p = (Player) event.getWhoClicked();
-            if (event.getCurrentItem() != null && InventoryMenuTemplateRepository.isMenuItem(event.getCurrentItem(), p)) {
+            if (event.getCurrentItem() != null && MenuRepository.isMenuItem(event.getCurrentItem(), p)) {
                 event.setCancelled(true);
             }
         }
 
+    }
+
+
+    private void exitMenuOnClick(InventoryMenu menu, Player player) {
+        if (menu.exitOnClick()) {
+            menu.close(player);
+        }
     }
 
 

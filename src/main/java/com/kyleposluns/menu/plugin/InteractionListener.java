@@ -1,5 +1,6 @@
 package com.kyleposluns.menu.plugin;
 
+import com.kyleposluns.menu.inventorymenu.MenuRepository;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,8 +19,8 @@ public class InteractionListener implements Listener {
             ItemStack is = event.getItem();
             if (is != null) {
                 Player p = event.getPlayer();
-                if (InventoryMenuTemplateRepository.isMenuItem(is, p)) {
-                    InventoryMenuTemplateRepository.openMenu(is, p);
+                if (MenuRepository.isMenuItem(is, p)) {
+                    MenuRepository.openMenu(is, p);
                 }
             }
         }
