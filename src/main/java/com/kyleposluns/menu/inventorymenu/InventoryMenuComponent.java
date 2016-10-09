@@ -51,4 +51,5 @@ public abstract class InventoryMenuComponent {
     }
 
     abstract void selected();
+
 }
