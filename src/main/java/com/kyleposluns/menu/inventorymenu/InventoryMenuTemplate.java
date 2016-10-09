@@ -16,6 +16,8 @@ public class InventoryMenuTemplate extends InventoryMenuComponentTemplate<Invent
 
     private boolean exitOnClickOutside;
 
+    private boolean exitOnClick;
+
     private boolean menuControls;
 
     protected InventoryMenuTemplate() {
@@ -35,6 +37,10 @@ public class InventoryMenuTemplate extends InventoryMenuComponentTemplate<Invent
 
     public void addComponent(int position, InventoryMenuComponentTemplate<? extends InventoryMenuComponent> component) {
         components.put(position, component);
+    }
+
+    public void setExitOnClick(boolean exitOnClick) {
+        this.exitOnClick = exitOnClick;
     }
 
     public void setExitOnClickOutside(boolean exitOnClickOutside) {
@@ -59,7 +65,7 @@ public class InventoryMenuTemplate extends InventoryMenuComponentTemplate<Invent
                         entry -> entry.getKey(),
                         entry -> entry.getValue().construct(p)));
 
-        InventoryMenu menu = new InventoryMenu(is, getTitle(p), actualComponents, exitOnClickOutside, menuControls, super.getAccessController(), super.getVisibilityController(), p);
+        InventoryMenu menu = new InventoryMenu(is, getTitle(p), actualComponents, exitOnClickOutside, exitOnClick, menuControls, super.getAccessController(), super.getVisibilityController(), p);
 
         return menu;
     }

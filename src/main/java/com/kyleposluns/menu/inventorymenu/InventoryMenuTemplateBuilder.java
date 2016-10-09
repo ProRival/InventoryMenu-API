@@ -77,6 +77,11 @@ public class InventoryMenuTemplateBuilder extends InventoryMenuComponentTemplate
         return this;
     }
 
+    public InventoryMenuTemplateBuilder exitOnClick(boolean exitOnClick) {
+        buildingObj.setExitOnClick(exitOnClick);
+        return this;
+    }
+
     public InventoryMenuTemplateBuilder menuControls(boolean menuControls) {
         buildingObj.setMenuControls(menuControls);
         return this;
