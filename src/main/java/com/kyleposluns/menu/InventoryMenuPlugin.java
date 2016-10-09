@@ -14,23 +14,32 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class InventoryMenuPlugin extends JavaPlugin {
 
+    private static final String ONLY_API = "onlyapi";
+
     private static InventoryMenuPlugin instance;
 
     @Override
     public void onEnable() {
         instance = this;
-        Bukkit.getPluginManager().registerEvents(new InventoryClickListener(), this);
-        Bukkit.getPluginManager().registerEvents(new ConnectionListener(), this);
-        Bukkit.getPluginManager().registerEvents(new InteractionListener(), this);
+        this.saveDefaultConfig();
+        if (!(this.getConfig().getBoolean(ONLY_API))) {
+            Bukkit.getPluginManager().registerEvents(new InventoryClickListener(), this);
+            Bukkit.getPluginManager().registerEvents(new ConnectionListener(), this);
+            Bukkit.getPluginManager().registerEvents(new InteractionListener(), this);
 
-        Bukkit.getScheduler().runTask(InventoryMenuPlugin.get(), () -> {
-            MenuRepository.addMenu(new ExampleMenu());
-        });
+            Bukkit.getScheduler().runTask(InventoryMenuPlugin.get(), () -> {
+                MenuRepository.addMenu(new ExampleMenu());
+            });
+        } else {
+            System.out.println("Using InventoryMenu-API Version: " + this.getDescription().getVersion());
+        }
     }
 
     @Override
     public void onDisable() {
-        HandlerList.unregisterAll(this);
+        if (!(this.getConfig().getBoolean(ONLY_API))) {
+            HandlerList.unregisterAll(this);
+        }
         instance = null;
     }
 

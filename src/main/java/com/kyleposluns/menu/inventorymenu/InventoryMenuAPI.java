@@ -9,4 +9,5 @@ public class InventoryMenuAPI {
     public static InventoryMenuItemTemplateBuilder item() {
         return new InventoryMenuItemTemplateBuilder();
     }
+
 }
