@@ -19,16 +19,18 @@ public class InventoryMenu extends InventoryMenuComponent implements InventoryHo
     private final Inventory inventory;
     private final Map<Integer, InventoryMenuComponent> allComponents;
     private final boolean exitOnClickOutside;
+    private final boolean exitOnClick;
     private final boolean menuControls;
     private final Player p;
     private final Map<Integer, InventoryMenuComponent> currentComponents;
 
-    protected InventoryMenu(ItemStackWrapper displayItem, String title, Map<Integer, InventoryMenuComponent> components, boolean exitOnClickOutside, boolean menuControls, Dynamic<Boolean> accessController, Dynamic<Boolean> visibilityController, Player p) {
+    protected InventoryMenu(ItemStackWrapper displayItem, String title, Map<Integer, InventoryMenuComponent> components, boolean exitOnClickOutside, boolean exitOnClick, boolean menuControls, Dynamic<Boolean> accessController, Dynamic<Boolean> visibilityController, Player p) {
         super(displayItem, visibilityController, accessController);
         this.p = p;
         this.allComponents = components;
         this.inventory = Bukkit.createInventory(this, calcRows() * ROWSIZE, title);
         this.exitOnClickOutside = exitOnClickOutside;
+        this.exitOnClick = exitOnClick;
         this.menuControls = menuControls;
         this.currentComponents = new HashMap<>();
         setParents();
@@ -148,6 +150,10 @@ public class InventoryMenu extends InventoryMenuComponent implements InventoryHo
 
     public boolean exitOnClickOutside() {
         return exitOnClickOutside;
+    }
+
+    public boolean exitOnClick() {
+        return exitOnClick;
     }
 
     public void update() {
