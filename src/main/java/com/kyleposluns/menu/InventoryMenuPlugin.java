@@ -1,5 +1,6 @@
 package com.kyleposluns.menu;
 
+import com.kyleposluns.menu.inventorymenu.MenuRepository;
 import com.kyleposluns.menu.plugin.ConnectionListener;
 import com.kyleposluns.menu.plugin.ExampleMenu;
 import com.kyleposluns.menu.plugin.InteractionListener;
@@ -18,10 +19,13 @@ public class InventoryMenuPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        ExampleMenu.init();
         Bukkit.getPluginManager().registerEvents(new InventoryClickListener(), this);
         Bukkit.getPluginManager().registerEvents(new ConnectionListener(), this);
         Bukkit.getPluginManager().registerEvents(new InteractionListener(), this);
+
+        Bukkit.getScheduler().runTask(InventoryMenuPlugin.get(), () -> {
+            MenuRepository.addMenu(new ExampleMenu());
+        });
     }
 
     @Override
