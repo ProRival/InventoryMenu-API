@@ -8,9 +8,15 @@ import org.bukkit.inventory.ItemStack;
  */
 public abstract class Menu {
 
+    protected MenuManager menuManager;
+
     protected InventoryMenuTemplateBuilder menuBuilder;
 
-    public Menu() {
+    public Menu(MenuManager menuManager) {
+        if (menuManager == null) {
+            throw new IllegalArgumentException("MenuManager cannot be null!");
+        }
+        this.menuManager = menuManager;
         this.menuBuilder = getMenuBuilder();
     }
 

@@ -11,7 +11,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -32,7 +31,7 @@ public class InventoryMenuPlugin extends JavaPlugin {
         if (!(this.getConfig().getBoolean(ONLY_API))) {
             loadListeners();
             this.menuManager = new MenuManager(this);
-            this.menuManager.addMenu(new ExampleMenu());
+            this.menuManager.addMenu(new ExampleMenu(menuManager));
         } else {
             System.out.println("Using InventoryMenu-API Version: " + this.getDescription().getVersion());
         }
@@ -74,7 +73,7 @@ public class InventoryMenuPlugin extends JavaPlugin {
             this.getConfig().set(ONLY_API, false);
             loadListeners();
             this.menuManager = new MenuManager(this);
-            this.menuManager.addMenu(new ExampleMenu());
+            this.menuManager.addMenu(new ExampleMenu(menuManager));
         }
     }
 
