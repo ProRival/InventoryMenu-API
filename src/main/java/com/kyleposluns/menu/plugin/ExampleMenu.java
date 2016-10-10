@@ -7,7 +7,6 @@ import com.kyleposluns.menu.InventoryMenuPlugin;
 import com.kyleposluns.menu.inventorymenu.InventoryMenuTemplate;
 import com.kyleposluns.menu.inventorymenu.InventoryMenuTemplateBuilder;
 import com.kyleposluns.menu.inventorymenu.Menu;
-import com.kyleposluns.menu.inventorymenu.MenuRepository;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -34,7 +33,7 @@ public class ExampleMenu extends Menu {
     @Override
     public void update() {
         this.menuBuilder = mainMenu().component(getTeleportationMenu());
-        MenuRepository.addMenu(this);
+        InventoryMenuPlugin.get().getMenuManager().addMenu(this);
     }
 
     public InventoryMenuTemplate getMenu() {
