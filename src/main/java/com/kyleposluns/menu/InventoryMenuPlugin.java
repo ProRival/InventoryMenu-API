@@ -62,6 +62,22 @@ public class InventoryMenuPlugin extends JavaPlugin {
         instance = null;
     }
 
+    public void setOnlyApi(boolean onlyApi) {
+        if (onlyApi) {
+            this.getConfig().set(ONLY_API, true);
+            if (menuManager != null) {
+                this.menuManager.dispose();
+                this.menuManager = null;
+            }
+            HandlerList.unregisterAll(this);
+        } else {
+            this.getConfig().set(ONLY_API, false);
+            loadListeners();
+            this.menuManager = new MenuManager(this);
+            this.menuManager.addMenu(new ExampleMenu());
+        }
+    }
+
     public static InventoryMenuPlugin get() {
         return instance;
     }
