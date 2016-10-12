@@ -85,6 +85,8 @@ public class ItemStackWrapper {
         }
         ITEMGLOW = new ItemGlowEnchant(255);
 
-        Enchantment.registerEnchantment(ITEMGLOW);
+        if (Enchantment.getByName(ITEMGLOW.getName()) == null && Enchantment.getById(ITEMGLOW.getId()) == null) {
+            Enchantment.registerEnchantment(ITEMGLOW);
+        }
     }
 }
