@@ -28,6 +28,8 @@ public abstract class Menu {
         return getMenuBuilder().build();
     }
 
-    public abstract void update();
+    public void update() {
+
+    }
 
 }
