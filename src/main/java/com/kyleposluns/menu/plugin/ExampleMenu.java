@@ -65,6 +65,7 @@ public class ExampleMenu extends Menu {
                 .displayName("Teleportation Menu")
                 .menuControls(true)
                 .exitOnClickOutside(false)
+                .glowing(true)
                 .exitOnClick(true)
                 .displayIcon(Material.MAP);
         for (Player player : Bukkit.getOnlinePlayers()) {
@@ -77,6 +78,7 @@ public class ExampleMenu extends Menu {
                     .displayName(player.getName())
                     .displayItem(is)
                     .displayIcon(is.getType())
+                    .glowing(true)
                     .description((p) -> {
                         return Arrays.asList(ChatColor.GRAY + "Click here to teleport to " + player.getName());
                     })

@@ -22,6 +22,16 @@ public abstract class InventoryMenuComponentTemplateBuilder<C, T extends Invento
         buildingObj = getObj();
     }
 
+    public B glowing(boolean glowing) {
+        buildingObj.setGlowing(glowing);
+        return actualBuilder;
+    }
+
+    public B glowing(Dynamic<Boolean> glowing) {
+        buildingObj.setGlowing(glowing);
+        return actualBuilder;
+    }
+
     public B displayName(String displayName) {
         buildingObj.setDisplayName(displayName);
         return actualBuilder;

@@ -21,12 +21,14 @@ public abstract class InventoryMenuComponentTemplate<C> {
     private Dynamic<Material> displayIcon;
     private Dynamic<Integer> displayNumber;
     private Dynamic<List<String>> displayDescription;
+    private Dynamic<Boolean> glowing;
     private Dynamic<Boolean> visibilityController;
     private Dynamic<Boolean> accessController;
 
     protected InventoryMenuComponentTemplate() {
         this.displayItem = Dynamic.getConstant(new ItemStack(Material.STONE));
         this.displayName = Dynamic.getConstant("");
+        this.glowing = Dynamic.getConstant(false);
         this.visibilityController = Dynamic.getConstant(true);
         this.accessController = (Player player) -> player.isOp();
         this.displayIcon = Dynamic.getConstant(Material.STONE);
@@ -80,13 +82,25 @@ public abstract class InventoryMenuComponentTemplate<C> {
         return accessController.get(p);
     }
 
+    protected Dynamic<Boolean> isGlowing() {
+        return this.glowing;
+    }
+
     protected Dynamic<Boolean> getAccessController() {
         return accessController;
     }
 
     protected ItemStackWrapper constructDisplayItem() {
-        ItemStackWrapper wrapper = new ItemStackWrapper(displayItem, displayIcon, displayName, displayNumber, displayDescription);
+        ItemStackWrapper wrapper = new ItemStackWrapper(displayItem, displayIcon, displayName, displayNumber, glowing, displayDescription);
         return wrapper;
+    }
+
+    protected void setGlowing(boolean glowing) {
+        this.glowing = Dynamic.getConstant(glowing);
+    }
+
+    protected void setGlowing(Dynamic<Boolean> glowing) {
+        this.glowing = glowing;
     }
 
     protected void setDisplayItem(ItemStack displayItem) {
