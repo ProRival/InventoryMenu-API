@@ -50,7 +50,6 @@ public class ExampleMenu extends Menu {
                 .title("Example Menu")
                 .displayIcon(Material.COMPASS)
                 .displayName("Example Menu")
-                .menuControls(true)
                 .exitOnClickOutside(false)
                 .description("This is an")
                 .description("example menu");

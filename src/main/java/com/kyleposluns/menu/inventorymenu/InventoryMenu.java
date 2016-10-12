@@ -33,8 +33,8 @@ public class InventoryMenu extends InventoryMenuComponent implements InventoryHo
         this.exitOnClick = exitOnClick;
         this.menuControls = menuControls;
         this.currentComponents = new HashMap<>();
-        setParents();
         addMenuControls();
+        setParents();
         populateInventory();
     }
 
@@ -78,25 +78,22 @@ public class InventoryMenu extends InventoryMenuComponent implements InventoryHo
     protected void addMenuControls() {
         if (menuControls) {
             InventoryMenuComponent rootComp = getRoot();
-
             if (rootComp instanceof InventoryMenu) {
-                if (getParent() != null) {
+                InventoryMenuItem goBackItem = InventoryMenuAPI.item()
+                        .displayIcon(Material.ANVIL)
+                        .displayName(ChatColor.GREEN + "Go back")
+                        .description("Click to go back one menu level")
+                        .onClick(event -> {
+                            if (getParent() != null) {
+                                getParent().open();
+                            } else {
+                                event.getPlayer().closeInventory();
+                            }
+                        })
+                        .build().construct(p);
+                allComponents.put(inventory.getSize() - 1, goBackItem);
+                //inventory.setItem(0, goBackItem.getDisplayItemWrapper().construct(p));
 
-                    InventoryMenuItem goBackItem = InventoryMenuAPI.item()
-                            .displayIcon(Material.ANVIL)
-                            .displayName(ChatColor.GREEN + "Go back")
-                            .description("Click to go back one menu level")
-                            .onClick(event -> {
-                                if (getParent() != null) {
-                                    getParent().open();
-                                } else {
-                                    event.getPlayer().closeInventory();
-                                }
-                            })
-                            .build().construct(p);
-                    allComponents.put(0, goBackItem);
-                    //inventory.setItem(0, goBackItem.getDisplayItemWrapper().construct(p));
-                }
             }
         }
 
@@ -112,9 +109,7 @@ public class InventoryMenu extends InventoryMenuComponent implements InventoryHo
         if (!this.hasAccess(p)) {
             player.sendMessage(ChatColor.RED + "You are not allowed to open this InventoryMenu");
         } else {
-
             Inventory current = player.getOpenInventory().getTopInventory();
-
             if (current == null) {
                 player.openInventory(inventory);
             } else {
