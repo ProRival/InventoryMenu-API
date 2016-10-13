@@ -33,6 +33,7 @@ public class ExampleMenu extends Menu {
                 .exitOnClick(true)
                 .description("Click the head of the player")
                 .description("you want to teleport to!")
+                .menuControls(true)
                 .displayIcon(Material.COMPASS)
                 .exitOnClickOutside(false);
         for (Player player : Bukkit.getOnlinePlayers()) {
