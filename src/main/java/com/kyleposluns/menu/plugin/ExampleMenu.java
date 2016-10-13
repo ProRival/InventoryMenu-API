@@ -63,14 +63,4 @@ public class ExampleMenu extends Menu {
         return builder;
     }
 
-    //The getMenuBuilder() method is now called every time getMenu is called, which is every time someone opens a menu :D
-    public InventoryMenuTemplate getMenu() {
-        return getMenuBuilder().build();
-    }
-
-
-    @Override
-    public ItemStack getDisplayItemStack(Player p) {
-        return getMenu().getDisplayItemStack(p);
-    }
 }

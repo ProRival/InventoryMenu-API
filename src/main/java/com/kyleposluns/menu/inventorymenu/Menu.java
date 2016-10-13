@@ -18,14 +18,12 @@ public abstract class Menu {
 
     public abstract InventoryMenuTemplateBuilder getMenuBuilder();
 
-    public abstract ItemStack getDisplayItemStack(Player p);
+    public ItemStack getDisplayItemStack(Player p) {
+        return getMenuTemplate().getDisplayItemStack(p);
+    }
 
     public InventoryMenuTemplate getMenuTemplate() {
         return getMenuBuilder().build();
-    }
-
-    public void update() {
-
     }
 
 }
