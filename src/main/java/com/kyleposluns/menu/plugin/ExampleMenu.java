@@ -45,7 +45,6 @@ public class ExampleMenu extends Menu {
                     .displayName(player.getName())
                     .displayItem(is)
                     .displayIcon(is.getType())
-                    .glowing(true)
                     .description((p) -> {
                         return Arrays.asList(ChatColor.GRAY + "Click here to teleport to " + player.getName());
                     })
