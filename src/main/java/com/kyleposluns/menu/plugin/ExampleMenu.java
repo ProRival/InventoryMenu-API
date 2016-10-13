@@ -17,7 +17,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import java.util.Arrays;
 
 /**
- * Created by Kyle on 10/7/16.
+ * Created by Kyle on 10/12/16.
  */
 public class ExampleMenu extends Menu {
 
@@ -27,54 +27,21 @@ public class ExampleMenu extends Menu {
 
     @Override
     public InventoryMenuTemplateBuilder getMenuBuilder() {
-        return (this.menuBuilder == null ? getFullMenu() : this.menuBuilder);
-    }
-
-    public ItemStack getDisplayItemStack(Player player) {
-        return getMenu().getDisplayItemStack(player);
-    }
-
-    @Override
-    public void update() {
-        this.menuBuilder = mainMenu().component(getTeleportationMenu());
-        this.menuManager.addMenu(this);
-    }
-
-    public InventoryMenuTemplate getMenu() {
-        update();
-        return menuBuilder.build();
-    }
-
-    private final InventoryMenuTemplateBuilder mainMenu() {
-        return menu()
-                .title("Example Menu")
-                .displayIcon(Material.COMPASS)
-                .displayName("Example Menu")
-                .exitOnClickOutside(false)
-                .description("This is an")
-                .description("example menu");
-    }
-
-    private final InventoryMenuTemplateBuilder getFullMenu() {
-        return mainMenu().component(getTeleportationMenu());
-    }
-
-    public InventoryMenuTemplateBuilder getTeleportationMenu() {
-        InventoryMenuTemplateBuilder teleportMenu = menu()
-                .title("Teleportation Menu")
-                .displayName("Teleportation Menu")
-                .menuControls(true)
-                .exitOnClickOutside(false)
-                .glowing(true)
+        InventoryMenuTemplateBuilder builder = menu()
+                .title("Spectator Menu")
+                .displayName("Spectator Menu")
                 .exitOnClick(true)
-                .displayIcon(Material.MAP);
+                .description("Click the head of the player")
+                .description("you want to teleport to!")
+                .displayIcon(Material.COMPASS)
+                .exitOnClickOutside(false);
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (!player.isOnline()) continue;
             ItemStack is = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
             SkullMeta meta = (SkullMeta) is.getItemMeta();
             meta.setOwner(player.getName());
             is.setItemMeta(meta);
-            teleportMenu.component(item()
+            builder.component(item()
                     .displayName(player.getName())
                     .displayItem(is)
                     .displayIcon(is.getType())
@@ -93,12 +60,17 @@ public class ExampleMenu extends Menu {
                         event.getItem().getParent().update();
                     }));
         }
-        return teleportMenu;
+        return builder;
     }
+
+    //The getMenuBuilder() method is now called every time getMenu is called, which is every time someone opens a menu :D
+    public InventoryMenuTemplate getMenu() {
+        return getMenuBuilder().build();
+    }
+
 
     @Override
-    public boolean equals(Object o) {
-        return o instanceof ExampleMenu;
+    public ItemStack getDisplayItemStack(Player p) {
+        return getMenu().getDisplayItemStack(p);
     }
-
 }

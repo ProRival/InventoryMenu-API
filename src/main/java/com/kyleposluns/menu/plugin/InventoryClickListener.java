@@ -26,8 +26,8 @@ public class InventoryClickListener implements Listener {
                 } else {
                     int index = event.getRawSlot();
                     if (index < inventory.getSize()) {
-                        menu.selectItem(index);
                         exitMenuOnClick(menu, player);
+                        menu.selectItem(index);
                     } else {
                         exitMenuIfClickOutSide(menu, player);
                     }

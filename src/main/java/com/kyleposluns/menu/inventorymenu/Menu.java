@@ -10,15 +10,11 @@ public abstract class Menu {
 
     protected MenuManager menuManager;
 
-    protected InventoryMenuTemplateBuilder menuBuilder;
-
     public Menu(MenuManager menuManager) {
         if (menuManager == null) {
             throw new IllegalArgumentException("MenuManager cannot be null!");
         }
-        this.menuManager = menuManager;
-        this.menuBuilder = getMenuBuilder();
-    }
+        this.menuManager = menuManager;}
 
     public abstract InventoryMenuTemplateBuilder getMenuBuilder();
 

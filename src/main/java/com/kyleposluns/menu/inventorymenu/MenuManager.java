@@ -28,8 +28,24 @@ public class MenuManager {
         this.disposeOnDisable = false;
     }
 
-    public ItemStack[] getMenuItems(Player player) {
-        return menus.stream().map(menu -> menu.getDisplayItemStack(player)).collect(Collectors.toList()).toArray(new ItemStack[]{});
+    public Menu getMenuByItemStack(ItemStack itemStack, Player p) {
+        Optional<Menu> possibleMenu = menus.stream().filter(menu -> menu.getDisplayItemStack(p).equals(itemStack)).findFirst();
+        if (possibleMenu.isPresent()) {
+            return possibleMenu.get();
+        }
+        throw new IllegalArgumentException(itemStack.toString() + " does not get a valid menu!");
+    }
+
+    public Menu getMenuByTitle(String title, Player p) {
+        Optional<Menu> possibleMenu = menus.stream().filter(menu -> menu.getMenuTemplate().getTitle(p).equals(title)).findFirst();
+        if (possibleMenu.isPresent()) {
+            return possibleMenu.get();
+        }
+        throw new IllegalArgumentException(title + " is not a valid menu!");
+    }
+
+    public ItemStack[] getMenuItems(Player p) {
+        return menus.stream().map(menu -> menu.getDisplayItemStack(p)).collect(Collectors.toList()).toArray(new ItemStack[]{});
     }
 
     public boolean isMenuItem(ItemStack is, Player p) {
