@@ -21,7 +21,7 @@ public class InventoryMenuItemTemplate extends InventoryMenuComponentTemplate<In
 
     @Override
     public InventoryMenuItem construct(Player p) {
-        ItemStackWrapper isw = constructDisplayItem();
+        ItemStackWrapper isw = getDisplayItemStackWrapper();
         return new InventoryMenuItem(isw, onClick, getVisibilityController(), getAccessController());
     }
 }

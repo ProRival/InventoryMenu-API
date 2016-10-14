@@ -47,9 +47,7 @@ public class ItemStackWrapper {
     private ItemStack constructItemStackFromValues(ItemStack baseStack, Material icon, String name, Integer number, Boolean glowing, List<String> description) {
         ItemStack is = baseStack.clone();
 
-        System.out.println("ITEMSTACK WRAPPER LINE 50: " + is.getType().name() + ", " + is.getData().getData());
-
-        if (icon != null) {
+        if (icon != null && icon != Material.STONE) {
             is.setType(icon);
             //is.setData() is not working...
             //Later: is.getData().setData(icon.getData());
