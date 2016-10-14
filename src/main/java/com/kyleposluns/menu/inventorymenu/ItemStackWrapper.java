@@ -22,7 +22,7 @@ import org.bukkit.inventory.meta.SkullMeta;
  */
 public class ItemStackWrapper {
 
-    private static final Enchantment ITEMGLOW;
+    public static final Enchantment ITEMGLOW;
 
     private final Dynamic<ItemStack> displayItem;
     private final Dynamic<String> displayName;
@@ -47,11 +47,14 @@ public class ItemStackWrapper {
     private ItemStack constructItemStackFromValues(ItemStack baseStack, Material icon, String name, Integer number, Boolean glowing, List<String> description) {
         ItemStack is = baseStack.clone();
 
+        System.out.println("ITEMSTACK WRAPPER LINE 50: " + is.getType().name() + ", " + is.getData().getData());
+
         if (icon != null) {
             is.setType(icon);
             //is.setData() is not working...
             //Later: is.getData().setData(icon.getData());
         }
+
 
         if (number != null) {
             is.setAmount(number);

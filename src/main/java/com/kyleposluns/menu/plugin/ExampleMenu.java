@@ -3,46 +3,46 @@ package com.kyleposluns.menu.plugin;
 import static com.kyleposluns.menu.inventorymenu.InventoryMenuAPI.item;
 import static com.kyleposluns.menu.inventorymenu.InventoryMenuAPI.menu;
 
-import com.kyleposluns.menu.inventorymenu.InventoryMenuTemplate;
-import com.kyleposluns.menu.inventorymenu.InventoryMenuTemplateBuilder;
-import com.kyleposluns.menu.inventorymenu.Menu;
-import com.kyleposluns.menu.inventorymenu.MenuManager;
+import com.kyleposluns.menu.inventorymenu.*;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.material.MaterialData;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Kyle on 10/12/16.
  */
 public class ExampleMenu extends Menu {
 
+    private static Map<GameMode, MaterialData> dataMap;
+
     public ExampleMenu(MenuManager menuManager) {
         super(menuManager);
     }
 
-    @Override
-    public InventoryMenuTemplateBuilder getMenuBuilder() {
-        InventoryMenuTemplateBuilder builder = menu()
-                .title("Spectator Menu")
-                .displayName("Spectator Menu")
-                .exitOnClick(true)
-                .description("Click the head of the player")
-                .description("you want to teleport to!")
+    private InventoryMenuTemplateBuilder getTeleportationMenu() {
+        InventoryMenuTemplateBuilder teleportationComponent = menu()
+                .title("Teleportation Menu")
+                .displayName(ChatColor.GREEN + "Teleportation Menu")
+                .exitOnClickOutside(false)
                 .menuControls(true)
-                .displayIcon(Material.COMPASS)
-                .exitOnClickOutside(false);
+                .displayIcon(Material.SNOW_BALL);
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (!player.isOnline()) continue;
-            ItemStack is = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
+            ItemStack is = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
             SkullMeta meta = (SkullMeta) is.getItemMeta();
             meta.setOwner(player.getName());
             is.setItemMeta(meta);
-            builder.component(item()
+            teleportationComponent.component(item()
                     .displayName(player.getName())
                     .displayItem(is)
                     .displayIcon(is.getType())
@@ -60,7 +60,70 @@ public class ExampleMenu extends Menu {
                         event.getItem().getParent().update();
                     }));
         }
-        return builder;
+        return teleportationComponent;
+    }
+
+    private InventoryMenuTemplateBuilder getGameModeSelectorMenu() {
+        InventoryMenuTemplateBuilder gameModeComponent = menu()
+                .title("Game Mode Selector")
+                .displayName(ChatColor.LIGHT_PURPLE + "Game Mode Selector")
+                .description("Click to open the Game Mode Selector!")
+                .exitOnClickOutside(false)
+                .menuControls(true)
+                .accessController(p -> p.hasPermission("minecraft.command.gamemode") || p.hasPermission("bukkit.command.gamemode"))
+                .visibilityController(p -> p.hasPermission("minecraft.command.gamemode") || p.hasPermission("bukkit.command.gamemode"))
+                .displayIcon(Material.STONE_AXE)
+                .exitOnClick(true)
+                .glowing(true);
+
+
+        for (GameMode gameMode : GameMode.values()) {
+            String name = StringUtils.capitalize(gameMode.name().toLowerCase());
+            gameModeComponent.component(item()
+                    .displayName(ChatColor.AQUA + name)
+                    .description("Set your game mode to: " + name + " mode!")
+                    .displayItem(p -> {
+                        ItemStack is = new ItemStack(Material.STAINED_GLASS, 1, (short) dataMap.get(gameMode).getData());
+                        if (p.getGameMode().equals(gameMode)) {
+                            is.addUnsafeEnchantment(ItemStackWrapper.ITEMGLOW, 1);
+                        }
+                        return is;
+                    })
+                    .onClick(event -> {
+                        Player player = event.getPlayer();
+                        if (player.getGameMode().equals(gameMode)) {
+                            player.sendMessage(ChatColor.RED + "You are already in Game Mode: " + name);
+                        } else {
+                            player.setGameMode(gameMode);
+                            player.sendMessage(ChatColor.GREEN + "Game Mode set to: " + name);
+                        }
+                    }));
+        }
+        return gameModeComponent;
+    }
+
+    @Override
+    public InventoryMenuTemplateBuilder getMenuBuilder() {
+        InventoryMenuTemplateBuilder mainBuilder = menu()
+                .title("Example Menu")
+                .displayName("Example Menu")
+                .description("Click the head of the player")
+                .description("you want to teleport to!")
+                .menuControls(true)
+                .displayIcon(Material.COMPASS)
+                .exitOnClickOutside(true)
+                .component(getTeleportationMenu())
+                .component(getGameModeSelectorMenu());
+
+        return mainBuilder;
+    }
+
+    static {
+        dataMap = new HashMap<>();
+        dataMap.put(GameMode.ADVENTURE, new MaterialData(Material.STAINED_GLASS, (byte) 5));
+        dataMap.put(GameMode.CREATIVE, new MaterialData(Material.STAINED_GLASS, (byte) 14));
+        dataMap.put(GameMode.SPECTATOR, new MaterialData(Material.STAINED_GLASS, (byte) 11));
+        dataMap.put(GameMode.SURVIVAL, new MaterialData(Material.STAINED_GLASS, (byte) 4));
     }
 
 }

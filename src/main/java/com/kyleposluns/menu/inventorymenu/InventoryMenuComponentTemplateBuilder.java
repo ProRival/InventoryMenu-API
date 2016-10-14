@@ -43,7 +43,7 @@ public abstract class InventoryMenuComponentTemplateBuilder<C, T extends Invento
     }
 
     public B displayIcon(Material displayIcon) {
-        buildingObj.setDisplayIcon(Dynamic.getConstant(displayIcon));
+        buildingObj.setDisplayIcon(displayIcon);
         return actualBuilder;
     }
 

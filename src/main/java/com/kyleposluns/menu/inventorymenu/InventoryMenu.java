@@ -9,6 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.stream.Collectors;
 
@@ -72,7 +73,12 @@ public class InventoryMenu extends InventoryMenuComponent implements InventoryHo
             }
             currentComponents.put(current, value);
         }
-        currentComponents.forEach((key, value) -> inventory.setItem(key, value.getDisplayItemWrapper().construct(p)));
+        currentComponents.forEach((key, value) -> {
+            ItemStackWrapper wrapper = value.getDisplayItemWrapper();
+            ItemStack is = wrapper.construct(p);
+            System.out.println("INVENTORY MENU LINE 79: " + is.getType().name() + ", " + is.getData().getData());
+            inventory.setItem(key, value.getDisplayItemWrapper().construct(p));
+        });
     }
 
     protected void addMenuControls() {

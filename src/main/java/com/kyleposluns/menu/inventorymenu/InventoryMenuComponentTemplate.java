@@ -30,7 +30,7 @@ public abstract class InventoryMenuComponentTemplate<C> {
         this.displayName = Dynamic.getConstant("");
         this.glowing = Dynamic.getConstant(false);
         this.visibilityController = Dynamic.getConstant(true);
-        this.accessController = (Player player) -> player.isOp();
+        this.accessController = Dynamic.getConstant(true);
         this.displayIcon = Dynamic.getConstant(Material.STONE);
         this.displayNumber = Dynamic.getConstant(1);
         this.displayDescription = Dynamic.getConstant(new ArrayList<>()); //Always returns the same(!) object
