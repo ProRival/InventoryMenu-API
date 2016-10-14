@@ -83,7 +83,7 @@ public class ExampleMenu extends Menu {
                     .displayName(ChatColor.AQUA + name)
                     .description("Set your game mode to: " + name + " mode!")
                     .displayItem(p -> {
-                        ItemStack is = new ItemStack(Material.STAINED_GLASS, 1, (short) dataMap.get(gameMode).getData());
+                        ItemStack is = new ItemStack(Material.STAINED_GLASS, 1, (short) 1, dataMap.get(gameMode).getData());
                         if (p.getGameMode().equals(gameMode)) {
                             is.addUnsafeEnchantment(ItemStackWrapper.ITEMGLOW, 1);
                         }
