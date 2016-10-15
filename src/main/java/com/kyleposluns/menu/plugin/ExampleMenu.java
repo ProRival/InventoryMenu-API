@@ -102,6 +102,33 @@ public class ExampleMenu extends Menu {
         return gameModeComponent;
     }
 
+    private InventoryMenuTemplateBuilder getServerStatusMenu() {
+        InventoryMenuTemplateBuilder statusMenu = menu()
+                .title("Server Status")
+                .displayName(ChatColor.GOLD + "Server Status")
+                .description("Click to open the Server Status menu!")
+                .displayIcon(Material.REDSTONE_COMPARATOR)
+                .visibilityController(p -> p.hasPermission("bukkit.command.stop") || p.hasPermission("minecraft.command.stop"))
+                .accessController(p -> p.hasPermission("bukkit.command.stop") || p.hasPermission("minecraft.command.stop"))
+                .menuControls(true)
+                .exitOnClickOutside(true)
+                .component(item()
+                        .displayName(ChatColor.RED + "Stop")
+                        .description("Click to stop the server!")
+                        .description("(Will restart if a restart script exists)")
+                        .displayIcon(Material.REDSTONE)
+                        .onClick(event -> Bukkit.getScheduler().scheduleSyncDelayedTask(this.menuManager.getOwningPlugin(), () -> Bukkit.shutdown(), 1L)))
+                .component(item()
+                        .displayName(ChatColor.GREEN + "Reload")
+                        .description("Click to reload the server!")
+                        .description(ChatColor.RESET + "" + ChatColor.YELLOW + "Warning: Not recommended!")
+                        .displayIcon(Material.REDSTONE_TORCH_ON)
+                        .onClick(event -> Bukkit.getScheduler().scheduleSyncDelayedTask(this.menuManager.getOwningPlugin(), () -> Bukkit.reload(), 1L)));
+        return statusMenu;
+
+    }
+
+
     @Override
     public InventoryMenuTemplateBuilder getMenuBuilder() {
         InventoryMenuTemplateBuilder mainBuilder = menu()
@@ -113,6 +140,7 @@ public class ExampleMenu extends Menu {
                 .displayIcon(Material.COMPASS)
                 .exitOnClickOutside(true)
                 .component(getTeleportationMenu())
+                .component(getServerStatusMenu())
                 .component(getGameModeSelectorMenu());
 
         return mainBuilder;
