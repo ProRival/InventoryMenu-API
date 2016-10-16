@@ -23,7 +23,7 @@ public interface InventoryMenuClickListener {
 
     /**
      * Called when a player clicks on an item in an InventoryMenu
-     * @param event
+     * @param event the event.
      */
     public void onClick(InventoryMenuClickEvent event);
 }

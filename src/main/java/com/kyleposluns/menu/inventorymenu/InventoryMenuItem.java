@@ -22,6 +22,9 @@ package com.kyleposluns.menu.inventorymenu;
 
 import com.kyleposluns.menu.function.Dynamic;
 
+/**
+ * A representation of an item in a menu
+ */
 public class InventoryMenuItem extends InventoryMenuComponent {
 
     private final InventoryMenuClickListener onClick;

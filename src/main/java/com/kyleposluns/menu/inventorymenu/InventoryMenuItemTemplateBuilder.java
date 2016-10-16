@@ -19,6 +19,9 @@
 
 package com.kyleposluns.menu.inventorymenu;
 
+/**
+ * Builds an InventoryMenuItemTemplate
+ */
 public class InventoryMenuItemTemplateBuilder extends InventoryMenuComponentTemplateBuilder<InventoryMenuItem, InventoryMenuItemTemplate, InventoryMenuItemTemplateBuilder> {
 
     public InventoryMenuItemTemplateBuilder() {

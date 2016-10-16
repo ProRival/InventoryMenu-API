@@ -22,6 +22,9 @@ package com.kyleposluns.menu.inventorymenu;
 
 import com.kyleposluns.menu.function.Dynamic;
 
+/**
+ * Builds an InventoryMenuTemplate
+ */
 public class InventoryMenuTemplateBuilder extends InventoryMenuComponentTemplateBuilder<InventoryMenu, InventoryMenuTemplate, InventoryMenuTemplateBuilder> {
 
     private static final int ROWSIZE = 9;
@@ -128,7 +131,7 @@ public class InventoryMenuTemplateBuilder extends InventoryMenuComponentTemplate
      * @param x the x-coordanate
      * @param y the y-coordanate
      * @param menuTemplate the menu component
-     * @return
+     * @return this InventoryMenuTemplateBuilder
      */
     public InventoryMenuTemplateBuilder component(int x, int y, InventoryMenuTemplate menuTemplate) {
         return component(y * ROWSIZE + x, menuTemplate);

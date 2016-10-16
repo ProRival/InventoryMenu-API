@@ -13,6 +13,9 @@ Contributions by other developers are always welcome as long as the follow these
 * Make sure the code is efficient. 
 * Test your code.
 
+## Javadocs
+See [here] (http://kyleposluns.com/InventoryMenu-API/javadocs.html)
+
 ## Tutorial
 See [here] (https://github.com/ProRival/InventoryMenu-API/blob/master/TUTORIAL.md)
 

@@ -27,6 +27,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 
+/**
+ * Template for an InventoryMenu
+ */
 public class InventoryMenuTemplate extends InventoryMenuComponentTemplate<InventoryMenu> {
 
     private Dynamic<String> title;

@@ -24,6 +24,9 @@ import com.kyleposluns.menu.function.Dynamic;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+/**
+ * Abstract menu component
+ */
 public abstract class InventoryMenuComponent {
 
     private final ItemStackWrapper displayItem;
@@ -82,7 +85,7 @@ public abstract class InventoryMenuComponent {
 
     /**
      * Set the parent InventoryMenu
-     * @param parent
+     * @param parent the parent
      */
     protected void setParent(InventoryMenu parent) {
         this.parent = parent;

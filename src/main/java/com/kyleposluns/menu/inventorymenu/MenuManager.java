@@ -28,6 +28,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Manages menus in a server.
+ */
 public class MenuManager {
 
     private static List<MenuManager> menuManagers;
@@ -153,7 +156,7 @@ public class MenuManager {
 
     /**
      * Schedule this MenuManager to be disposed when {@link JavaPlugin#onDisable()} is called
-     * @param dispose
+     * @param dispose true if the MenuManager is supposed to be disposed
      */
     public void disposeOnDisable(boolean dispose) {
         this.disposeOnDisable = dispose;
@@ -161,7 +164,7 @@ public class MenuManager {
 
     /**
      * Test whether this MenuManager is scheduled to dispose when {@link JavaPlugin#onDisable()} is called
-     * @return
+     * @return true if the manager is supposed to be disposed
      */
     public boolean isDisposedOnDisable() {
         return this.disposeOnDisable;

@@ -31,6 +31,10 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+/**
+ * Abstract representation of a component template.
+ * @param <C> InventoryMenu (Item)
+ */
 public abstract class InventoryMenuComponentTemplate<C> {
 
     //private InventoryMenuTemplate parent;
@@ -187,7 +191,7 @@ public abstract class InventoryMenuComponentTemplate<C> {
 
     /**
      * Constantly set whether the item will glow or not
-     * @param glowing
+     * @param glowing true if the item is supposed to glow
      */
     protected void setGlowing(boolean glowing) {
         this.glowing = Dynamic.getConstant(glowing);
@@ -195,7 +199,7 @@ public abstract class InventoryMenuComponentTemplate<C> {
 
     /**
      * Dynamically set whether the item will glow or not
-     * @param glowing
+     * @param glowing true if the item is supposed to glow
      */
     protected void setGlowing(Dynamic<Boolean> glowing) {
         this.glowing = glowing;

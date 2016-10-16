@@ -31,6 +31,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+/**
+ * Builds an ItemStack from dynamic values
+ */
 public class ItemStackWrapper {
 
     public static final Enchantment ITEMGLOW;

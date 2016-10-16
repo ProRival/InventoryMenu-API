@@ -21,6 +21,9 @@ package com.kyleposluns.menu.inventorymenu;
 
 import org.bukkit.entity.Player;
 
+/**
+ * Template for an InventoryMenuItem
+ */
 public class InventoryMenuItemTemplate extends InventoryMenuComponentTemplate<InventoryMenuItem> {
 
     private InventoryMenuClickListener onClick;

@@ -26,6 +26,12 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
+/**
+ * Builds an InventoryMenuComponentTemplate
+ * @param <C> InventoryMenu (Item)
+ * @param <T> The component template
+ * @param <B> The template builder
+ */
 public abstract class InventoryMenuComponentTemplateBuilder<C, T extends InventoryMenuComponentTemplate<C>, B extends InventoryMenuComponentTemplateBuilder<C, T, B>> {
 
     //Needed for super fancy Builder inheritance
@@ -43,7 +49,7 @@ public abstract class InventoryMenuComponentTemplateBuilder<C, T extends Invento
 
     /**
      * Constantly set whether the item will glow or not
-     * @param glowing
+     * @param glowing true if the item is supposed to glow
      * @return The generic builder
      */
     public B glowing(boolean glowing) {
@@ -53,7 +59,7 @@ public abstract class InventoryMenuComponentTemplateBuilder<C, T extends Invento
 
     /**
      * Dynamically set whether the item will glow or not
-     * @param glowing
+     * @param glowing true if the item is supposed to glow
      * @return The generic builder
      */
     public B glowing(Dynamic<Boolean> glowing) {

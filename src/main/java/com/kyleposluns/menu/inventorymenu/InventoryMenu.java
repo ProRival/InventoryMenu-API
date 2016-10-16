@@ -31,6 +31,9 @@ import org.bukkit.inventory.InventoryHolder;
 
 import java.util.stream.Collectors;
 
+/**
+ * Represents an interactive menu
+ */
 public class InventoryMenu extends InventoryMenuComponent implements InventoryHolder {
 
     private static final int ROWSIZE = 9;

@@ -21,6 +21,9 @@ package com.kyleposluns.menu.inventorymenu;
 
 import org.bukkit.entity.Player;
 
+/**
+ * Event for when a player clicks on the InventoryMenu
+ */
 public class InventoryMenuClickEvent {
 
     private final InventoryMenuItem item;

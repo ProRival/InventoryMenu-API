@@ -21,6 +21,9 @@ package com.kyleposluns.menu.inventorymenu;
 
 import com.kyleposluns.menu.InventoryMenuPlugin;
 
+/**
+ * Foundation for creating menus and components
+ */
 public class InventoryMenuAPI {
 
     /**
