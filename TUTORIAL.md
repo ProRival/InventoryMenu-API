@@ -25,6 +25,10 @@ public class ExamplePlugin extends JavaPlugin {
         this.menuManager.dispose();
         this.menuManager = null;
     }
+
+    public static ExamplePlugin get() {
+        return instance;
+    }
 }
 ```
 
