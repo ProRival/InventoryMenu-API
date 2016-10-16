@@ -1,6 +1,6 @@
 # Inventory Menu API
 
-InventoryMenu-API is an easy to use and powerful API/plugin for Spigot and Bukkit Minecraft servers.
+InventoryMenu-API is an easy to use and powerful inventory API/plugin for Spigot and Bukkit Minecraft servers.
 
 ## Notices
 Some of the code in this repository was created by the SpleefLeague and its contributors; the code was modified around October 10, 2016. This code is released under the “GNU GENERAL PUBLIC LICENSE Version 3”.
