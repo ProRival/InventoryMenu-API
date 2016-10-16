@@ -5,8 +5,6 @@ import com.kyleposluns.menu.function.Dynamic;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Scanner;
-
 public abstract class InventoryMenuComponent {
 
     private final ItemStackWrapper displayItem;

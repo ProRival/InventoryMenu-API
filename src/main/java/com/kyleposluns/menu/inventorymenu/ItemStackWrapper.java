@@ -17,7 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 /**
- * (Thanks to this guy: )
+ * (Thanks to this guy :)
  * @author Jonas
  */
 public class ItemStackWrapper {
