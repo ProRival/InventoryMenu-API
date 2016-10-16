@@ -13,6 +13,9 @@ Contributions by other developers are always welcome as long as the follow these
 * Make sure the code is efficient. 
 * Test your code.
 
+## Tutorial
+See [here] (https://bitbucket.org/ProRival/inventorymenu-api/src/8011a0bdc6b27b34e9c56a24b57f1432f4a0a184/TUTORIAL.md?at=master&fileviewer=file-view-default)
+
 ## Notes
 Although this API is meant for practical use, I would like to stress to the user that I am still human, and I do make mistakes. If you do happen to catch any bugs or conventional mistakes in the code, feel free to either contribute to the repository or let a contributor to this repository know. (This includes formatting errors)
 
