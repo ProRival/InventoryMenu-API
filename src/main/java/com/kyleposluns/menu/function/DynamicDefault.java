@@ -2,9 +2,6 @@ package com.kyleposluns.menu.function;
 
 import org.bukkit.entity.Player;
 
-/**
- * Created by Kyle on 10/7/16.
- */
 public abstract class DynamicDefault<V> implements Dynamic<V> {
 
     private final V defaultValue, nullValue;

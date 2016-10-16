@@ -9,9 +9,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-/**
- * Created by Kyle on 10/7/16.
- */
 public class InteractionListener implements Listener {
 
     @EventHandler

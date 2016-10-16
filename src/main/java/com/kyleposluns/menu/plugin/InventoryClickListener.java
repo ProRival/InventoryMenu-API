@@ -9,9 +9,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 
-/**
- * Created by Kyle on 10/7/16.
- */
 public class InventoryClickListener implements Listener {
 
     @EventHandler

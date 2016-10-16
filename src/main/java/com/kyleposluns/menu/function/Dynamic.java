@@ -2,9 +2,6 @@ package com.kyleposluns.menu.function;
 
 import org.bukkit.entity.Player;
 
-/**
- * Created by Kyle on 10/7/16.
- */
 public interface Dynamic<V> {
 
     public V get(Player p);

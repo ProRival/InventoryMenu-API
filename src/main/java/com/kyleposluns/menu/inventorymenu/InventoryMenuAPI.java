@@ -14,6 +14,7 @@ public class InventoryMenuAPI {
 
     /**
      * You can either use this method or set onlyapi in the config to false.
+     * Note: This is not a really good way to turn off the plugin.
      */
     public static void onlyAPI(boolean onlyApi) {
         InventoryMenuPlugin.get().setOnlyApi(onlyApi);

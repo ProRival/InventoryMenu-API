@@ -4,11 +4,6 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.inventory.ItemStack;
 
-/**
- * Note: After testing this, it doesn't really work on skulls;
- * i'm not sure why.
- * Created by Kyle on 10/11/16.
- */
 public class ItemGlowEnchant extends Enchantment {
 
     public ItemGlowEnchant(int id) {

@@ -18,9 +18,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Kyle on 10/12/16.
- */
 public class ExampleMenu extends Menu {
 
     private static Map<GameMode, MaterialData> dataMap;

@@ -6,20 +6,12 @@ import java.util.List;
 
 import com.kyleposluns.menu.enchantment.ItemGlowEnchant;
 import com.kyleposluns.menu.function.Dynamic;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.block.Skull;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.SkullMeta;
 
-/**
- * (Thanks to this guy :)
- * @author Jonas
- */
 public class ItemStackWrapper {
 
     public static final Enchantment ITEMGLOW;
@@ -49,8 +41,6 @@ public class ItemStackWrapper {
 
         if (icon != null && icon != Material.STONE) {
             is.setType(icon);
-            //is.setData() is not working...
-            //Later: is.getData().setData(icon.getData());
         }
 
 

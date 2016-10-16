@@ -8,9 +8,6 @@ import org.bukkit.plugin.Plugin;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * Created by Kyle on 10/10/16.
- */
 public class MenuManager {
 
     private static List<MenuManager> menuManagers;
