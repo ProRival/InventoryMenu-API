@@ -14,7 +14,7 @@ Contributions by other developers are always welcome as long as the follow these
 * Test your code.
 
 ## Tutorial
-See [here] (https://bitbucket.org/ProRival/inventorymenu-api/src/8011a0bdc6b27b34e9c56a24b57f1432f4a0a184/TUTORIAL.md?at=master&fileviewer=file-view-default)
+See [here] (https://github.com/ProRival/InventoryMenu-API/blob/master/TUTORIAL.md)
 
 ## Notes
 Although this API is meant for practical use, I would like to stress to the user that I am still human, and I do make mistakes. If you do happen to catch any bugs or conventional mistakes in the code, feel free to either contribute to the repository or let a contributor to this repository know. (This includes formatting errors)
@@ -23,6 +23,6 @@ Although this API is meant for practical use, I would like to stress to the user
 Contact a developer if there are any issues with the plugin or API.
 
 ## License
-See [here] (https://bitbucket.org/ProRival/inventorymenu-api/src/3bfb6c3922bc6a3a252733ed5ef1bf5e13aa1e25/LICENSE?at=master&fileviewer=file-view-default)
+See [here] (https://github.com/ProRival/InventoryMenu-API/blob/master/LICENSE)
 
 
