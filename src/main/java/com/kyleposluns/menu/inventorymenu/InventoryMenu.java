@@ -1,3 +1,22 @@
+/*
+ *     InventoryMenu-API, a powerful menu API for Minecraft.
+ *     Copyright (C) 2016 Kyle Posluns
+ *     Copyright (C) 2016 SpleefLeague team and contributors
+ *
+ *     This program is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU General Public License as published by
+ *     the Free Software Foundation, either version 3 of the License, or
+ *     (at your option) any later version.
+ *
+ *     This program is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU General Public License for more details.
+ *
+ *     You should have received a copy of the GNU General Public License
+ *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package com.kyleposluns.menu.inventorymenu;
 
 import java.util.*;
@@ -38,10 +57,18 @@ public class InventoryMenu extends InventoryMenuComponent implements InventoryHo
         populateInventory();
     }
 
+    /**
+     * Get the owner of the menu.
+     * @return The Owner
+     */
     public Player getOwner() {
         return p;
     }
 
+    /**
+     * Calculate the amount of rows the Inventory needs to have.
+     * @return rows
+     */
     private int calcRows() {
         OptionalInt oInt = allComponents.keySet().stream().mapToInt(i -> i).max();
         int maxIndex = oInt.orElse(0);
@@ -52,10 +79,16 @@ public class InventoryMenu extends InventoryMenuComponent implements InventoryHo
         return rows;
     }
 
+    /**
+     * Set the parent of each component.
+     */
     private void setParents() {
         allComponents.values().forEach(component -> component.setParent(this));
     }
 
+    /**
+     * Fill the actual inventory.
+     */
     protected void populateInventory() {
         inventory.clear();
         currentComponents.clear();
@@ -75,6 +108,9 @@ public class InventoryMenu extends InventoryMenuComponent implements InventoryHo
         currentComponents.forEach((key, value) -> inventory.setItem(key, value.getDisplayItemWrapper().construct(p)));
     }
 
+    /**
+     * Add menu controls to the menu.
+     */
     protected void addMenuControls() {
         if (menuControls) {
             InventoryMenuComponent rootComp = getRoot();
@@ -104,6 +140,9 @@ public class InventoryMenu extends InventoryMenuComponent implements InventoryHo
         open();
     }
 
+    /**
+     * Open the menu.
+     */
     public void open() {
         Player player = p;
         if (!this.hasAccess(p)) {
@@ -119,6 +158,10 @@ public class InventoryMenu extends InventoryMenuComponent implements InventoryHo
         }
     }
 
+    /**
+     * Close the menu.
+     * @param player The target.
+     */
     public void close(Player player) {
         if (inventory.getViewers().contains(player)) {
             player.closeInventory();
@@ -126,6 +169,10 @@ public class InventoryMenu extends InventoryMenuComponent implements InventoryHo
         }
     }
 
+    /**
+     * Called when the player clicks on an item.
+     * @param index the position in the inventory.
+     */
     public void selectItem(int index) {
         if (currentComponents.containsKey(index)) {
             InventoryMenuComponent component = currentComponents.get(index);
@@ -143,14 +190,26 @@ public class InventoryMenu extends InventoryMenuComponent implements InventoryHo
         return inventory;
     }
 
+    /**
+     * Test whether the menu is supposed to close when the player clicks outside of the menu.
+     * @return true if the menu is supposed to close when the player clicks outside of the menu.
+     */
     public boolean exitOnClickOutside() {
         return exitOnClickOutside;
     }
 
+    /**
+     * Test whether the menu is supposed to close when the player selects an item.
+     * @return true if the player clicked inside the menu.
+     */
     public boolean exitOnClick() {
         return exitOnClick;
     }
 
+    /**
+     * Update the contents of the inventory.
+     * {@link #populateInventory()}
+     */
     public void update() {
         populateInventory();
     }

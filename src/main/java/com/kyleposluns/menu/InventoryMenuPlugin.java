@@ -1,5 +1,5 @@
 /*
- *     InventoryMenu-API, a powerful menu API for minecraft.
+ *     InventoryMenu-API, a powerful menu API for Minecraft.
  *     Copyright (C) 2016 Kyle Posluns
  *     Copyright (C) 2016 SpleefLeague team and contributors
  *
@@ -21,7 +21,7 @@ package com.kyleposluns.menu;
 
 import com.kyleposluns.menu.inventorymenu.MenuManager;
 import com.kyleposluns.menu.plugin.ConnectionListener;
-import com.kyleposluns.menu.plugin.ExampleMenu;
+import com.kyleposluns.menu.plugin.ServerManagerMenu;
 import com.kyleposluns.menu.plugin.InteractionListener;
 import com.kyleposluns.menu.plugin.InventoryClickListener;
 import org.bukkit.Bukkit;
@@ -48,7 +48,7 @@ public class InventoryMenuPlugin extends JavaPlugin {
         if (!(this.getConfig().getBoolean(ONLY_API))) {
             loadListeners();
             this.menuManager = new MenuManager(this);
-            this.menuManager.addMenu(new ExampleMenu(menuManager));
+            this.menuManager.addMenu(new ServerManagerMenu(menuManager));
         } else {
             System.out.println("Using InventoryMenu-API Version: " + this.getDescription().getVersion());
         }
@@ -79,18 +79,19 @@ public class InventoryMenuPlugin extends JavaPlugin {
     }
 
     public void setOnlyApi(boolean onlyApi) {
+        //unregister the listeners so that they can be re registered or stay unregistered.
+        HandlerList.unregisterAll(this);
         if (onlyApi) {
             this.getConfig().set(ONLY_API, true);
             if (menuManager != null) {
                 this.menuManager.dispose();
                 this.menuManager = null;
             }
-            HandlerList.unregisterAll(this);
         } else {
             this.getConfig().set(ONLY_API, false);
             loadListeners();
             this.menuManager = new MenuManager(this);
-            this.menuManager.addMenu(new ExampleMenu(menuManager));
+            this.menuManager.addMenu(new ServerManagerMenu(menuManager));
         }
     }
 

@@ -1,3 +1,22 @@
+/*
+ *     InventoryMenu-API, a powerful menu API for Minecraft.
+ *     Copyright (C) 2016 Kyle Posluns
+ *     Copyright (C) 2016 SpleefLeague team and contributors
+ *
+ *     This program is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU General Public License as published by
+ *     the Free Software Foundation, either version 3 of the License, or
+ *     (at your option) any later version.
+ *
+ *     This program is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU General Public License for more details.
+ *
+ *     You should have received a copy of the GNU General Public License
+ *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package com.kyleposluns.menu.inventorymenu;
 
 
@@ -32,10 +51,25 @@ public class ItemStackWrapper {
         this.displayDescription = displayDescription;
     }
 
+    /**
+     * Construct an ItemStack from wrapped values
+     * @param p the player associated with the values
+     * @return an ItemStack from the wrapped values
+     */
     public ItemStack construct(Player p) {
         return constructItemStackFromValues(displayItem.get(p), displayIcon.get(p), displayName.get(p), displayNumber.get(p), glowing.get(p), displayDescription.get(p));
     }
 
+    /**
+     * Construct an ItemStack
+     * @param baseStack the base item
+     * @param icon the base Material
+     * @param name the name of the item
+     * @param number the amount of items
+     * @param glowing whether the item should glow or not
+     * @param description the description of the item
+     * @return the wrapped ItemStack
+     */
     private ItemStack constructItemStackFromValues(ItemStack baseStack, Material icon, String name, Integer number, Boolean glowing, List<String> description) {
         ItemStack is = baseStack.clone();
 
