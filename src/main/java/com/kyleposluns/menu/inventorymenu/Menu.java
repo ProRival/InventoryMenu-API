@@ -33,7 +33,8 @@ public abstract class Menu {
         if (menuManager == null) {
             throw new IllegalArgumentException("MenuManager cannot be null!");
         }
-        this.menuManager = menuManager;}
+        this.menuManager = menuManager;
+    }
 
     /**
      * Get the root menu builder with all of its components
