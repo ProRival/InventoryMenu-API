@@ -35,7 +35,7 @@ import java.util.List;
 
 public class InventoryMenuPlugin extends JavaPlugin {
 
-    private static final String ONLY_API = "onlyapi";
+    private static String SERVER_MENU = "servermenu";
 
     private static InventoryMenuPlugin instance;
 
@@ -45,18 +45,13 @@ public class InventoryMenuPlugin extends JavaPlugin {
     public void onEnable() {
         instance = this;
         this.saveDefaultConfig();
-        if (!(this.getConfig().getBoolean(ONLY_API))) {
-            loadListeners();
+        List<Listener> listeners = new ArrayList<>();
+
+        if (this.getConfig().getBoolean(SERVER_MENU)) {
+            listeners.add(new ConnectionListener());
             this.menuManager = new MenuManager(this);
             this.menuManager.addMenu(new ServerManagerMenu(menuManager));
-        } else {
-            System.out.println("Using InventoryMenu-API Version: " + this.getDescription().getVersion());
         }
-    }
-
-    private void loadListeners() {
-        List<Listener> listeners = new ArrayList<>();
-        listeners.add(new ConnectionListener());
         listeners.add(new InteractionListener());
         listeners.add(new InventoryClickListener());
         for (Listener listener : listeners) {
@@ -64,35 +59,17 @@ public class InventoryMenuPlugin extends JavaPlugin {
         }
     }
 
+
     public MenuManager getMenuManager() {
         return this.menuManager;
     }
 
     @Override
     public void onDisable() {
-        if (!(this.getConfig().getBoolean(ONLY_API))) {
-            HandlerList.unregisterAll(this);
-        }
+        HandlerList.unregisterAll(this);
         MenuManager.disposeAll();
         menuManager = null;
         instance = null;
-    }
-
-    public void setOnlyApi(boolean onlyApi) {
-        //unregister the listeners so that they can be re registered or stay unregistered.
-        HandlerList.unregisterAll(this);
-        if (onlyApi) {
-            this.getConfig().set(ONLY_API, true);
-            if (menuManager != null) {
-                this.menuManager.dispose();
-                this.menuManager = null;
-            }
-        } else {
-            this.getConfig().set(ONLY_API, false);
-            loadListeners();
-            this.menuManager = new MenuManager(this);
-            this.menuManager.addMenu(new ServerManagerMenu(menuManager));
-        }
     }
 
     public static InventoryMenuPlugin get() {

@@ -19,8 +19,6 @@
 
 package com.kyleposluns.menu.inventorymenu;
 
-import com.kyleposluns.menu.InventoryMenuPlugin;
-
 /**
  * Foundation for creating menus and components
  */
@@ -42,11 +40,4 @@ public class InventoryMenuAPI {
         return new InventoryMenuItemTemplateBuilder();
     }
 
-    /**
-     * Turn the plugin functionality on or off.
-     * @param onlyApi true for api only
-     */
-    public static void onlyAPI(boolean onlyApi) {
-        InventoryMenuPlugin.get().setOnlyApi(onlyApi);
-    }
 }
