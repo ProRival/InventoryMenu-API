@@ -22,6 +22,8 @@ package com.kyleposluns.menu.inventorymenu;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import static com.kyleposluns.menu.inventorymenu.InventoryMenuAPI.menu;
+
 /**
  * Abstract representation of a Menu
  */
@@ -48,8 +50,8 @@ public abstract class Menu {
      * @param p the viewer of the menu
      * @return an ItemStack
      */
-    public ItemStack getDisplayItemStack(Player p) {
-        return getMenuTemplate().getDisplayItemStack(p);
+    public final ItemStack getDisplayItemStack(Player p) {
+        return this.getMenuTemplate().getDisplayItemStack(p);
     }
 
     /**
@@ -57,8 +59,8 @@ public abstract class Menu {
      * {@link #getMenuBuilder()}.{@link InventoryMenuTemplateBuilder#build()}
      * @return an InventoryMenuTemplate
      */
-    public InventoryMenuTemplate getMenuTemplate() {
-        return getMenuBuilder().build();
+    public final InventoryMenuTemplate getMenuTemplate() {
+        return this.getMenuBuilder().build();
     }
 
 }
