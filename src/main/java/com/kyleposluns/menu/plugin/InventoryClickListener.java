@@ -19,8 +19,8 @@
 
 package com.kyleposluns.menu.plugin;
 
-import com.kyleposluns.menu.InventoryMenuPlugin;
 import com.kyleposluns.menu.inventorymenu.InventoryMenu;
+import com.kyleposluns.menu.inventorymenu.MenuManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -57,9 +57,9 @@ public class InventoryClickListener implements Listener {
     public void onInventoryAction(InventoryClickEvent event) {
         if (event.getWhoClicked() instanceof Player) {
             Player p = (Player) event.getWhoClicked();
-            if (event.getCurrentItem() != null && InventoryMenuPlugin.get().getMenuManager().isMenuItem(event.getCurrentItem(), p)) {
+            MenuManager.getManagers().stream().filter(menuManager -> event.getCurrentItem() != null && menuManager.isMenuItem(event.getCurrentItem(), p)).forEach(menuManager -> {
                 event.setCancelled(true);
-            }
+            });
         }
 
     }
