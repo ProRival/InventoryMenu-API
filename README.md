@@ -9,9 +9,6 @@ Some of the code in this repository was created by the SpleefLeague and its cont
 Contributions by other developers are always welcome as long as the follow these guidelines: 
 * Submissions must be licensed under the GNU General Public License v3.
 
-## Javadocs
-See [here] (http://kyleposluns.com/InventoryMenu-API/javadocs.html)
-
 ## Tutorial
 See [here](https://github.com/ProRival/InventoryMenu-API/blob/master/TUTORIAL.md)
 
